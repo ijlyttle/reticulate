@@ -202,6 +202,10 @@ conda_create <- function(envname = NULL,
   # resolve conda binary
   conda <- conda_binary(conda)
 
+
+  print(paste("conda_create environment: ", environment))
+  print(paste("conda_create envname: ", envname))
+
   # if environment is provided, use it directly
   if (!is.null(environment))
     return(conda_create_env(envname, environment, conda))
