@@ -1,8 +1,8 @@
 
 python_environment_resolve <- function(envname = NULL, resolve = identity) {
 
-  print(envname)
-  print(Sys.getenv("RETICULATE_PYTHON_ENV", unset = "r-reticulate"))
+  print(paste("envname: ", envname))
+  print(paste("env: ", Sys.getenv("RETICULATE_PYTHON_ENV", unset = "r-reticulate")))
 
   # use RETICULATE_PYTHON_ENV as default
   envname <- envname %||% Sys.getenv("RETICULATE_PYTHON_ENV", unset = "r-reticulate")
