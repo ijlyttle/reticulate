@@ -202,10 +202,6 @@ conda_create <- function(envname = NULL,
   # resolve conda binary
   conda <- conda_binary(conda)
 
-
-  print(paste("conda_create environment: ", environment))
-  print(paste("conda_create envname: ", envname))
-
   # if environment is provided, use it directly
   if (!is.null(environment))
     return(conda_create_env(envname, environment, conda))
@@ -779,8 +775,6 @@ find_conda <- function() {
 
 condaenv_resolve <- function(envname = NULL) {
 
-  print(paste("condaenv_resolve envname:", envname))
-
   python_environment_resolve(
     envname = envname,
     resolve = identity
@@ -917,8 +911,6 @@ conda_run2_windows <-
   function(cmd, args = c(), conda = "auto", envname = NULL,
            cmd_line = paste(shQuote(cmd), paste(args, collapse = " "))) {
   conda <- normalizePath(conda_binary(conda))
-
-  print(paste("conda_run2_windows envname: ", envname))
 
   if (identical(envname, "base"))
     envname <- file.path(dirname(conda), "../..")
