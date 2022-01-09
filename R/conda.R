@@ -914,6 +914,8 @@ conda_run2_windows <-
            cmd_line = paste(shQuote(cmd), paste(args, collapse = " "))) {
   conda <- normalizePath(conda_binary(conda))
 
+  print(paste("conda_run2_windows envname: ", envname))
+
   if (identical(envname, "base"))
     envname <- file.path(dirname(conda), "../..")
   else
