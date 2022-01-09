@@ -44,6 +44,8 @@ pip_install <- function(python,
       conda <- NULL
   }
 
+  print(paste("pip_install envname: ", envname))
+
   result <- if (is.null(conda) || identical(conda, FALSE))
     system2(python, args)
   else
