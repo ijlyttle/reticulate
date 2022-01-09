@@ -775,6 +775,8 @@ find_conda <- function() {
 
 condaenv_resolve <- function(envname = NULL) {
 
+  print(paste("condaenv_resolve envname:", envname))
+
   python_environment_resolve(
     envname = envname,
     resolve = identity
