@@ -188,6 +188,8 @@ py_discover_config <- function(required_module = NULL, use_environment = NULL) {
 
   }
 
+  stop("=== line 191 ===")
+
   # if RETICULATE_PYTHON_ENV is specified then use that
   reticulate_python_env <- Sys.getenv("RETICULATE_PYTHON_ENV", unset = NA)
   if (!is.na(reticulate_python_env)) {
@@ -299,8 +301,6 @@ py_discover_config <- function(required_module = NULL, use_environment = NULL) {
     return(config)
 
   }
-
-  stop("=== line 302 ===")
 
   # the user might have opted out for miniconda but could still have a
   # conda isntallation. In this case, we should the r-reticulate env
