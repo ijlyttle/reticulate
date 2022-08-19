@@ -688,6 +688,11 @@ python_config <- function(python,
   if (!is.null(main_process_info)) {
     # either we have the main process libpython, or NA in case of PIE executable
     libpython <- main_process_info$libpython
+
+    print("-_-_-_- main_process_info")
+    print(main_process_info)
+    print("-_-_-_-")
+
   } else if (is_windows()) {
 
     # construct DLL name
@@ -722,11 +727,11 @@ python_config <- function(python,
     libsrcs <- c("Prefix", "ExecPrefix", "BaseExecPrefix", "LIBPL", "LIBDIR")
     srcs <- Map(function(x) config[[x]], libsrcs)
     srcs <- Filter(Negate(is.null), srcs)
-    srcs <- c(srcs, Sys.getenv("LD_LIBRARY_PATH"))
+    srcs <- c(srcs, )
 
-    message("-_-_-_-")
-    message(paste(srcs, collapse = "\n"))
-    message("-_-_-_-")
+    print("-_-_-_- srcs")
+    print(paste(srcs, collapse = "\n"))
+    print("-_-_-_-")
 
     for (src in srcs) {
 
