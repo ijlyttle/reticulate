@@ -159,6 +159,7 @@ py_discover_config <- function(required_module = NULL, use_environment = NULL) {
   # check if python symbols can already be found in the current process
   main_process_info <- main_process_python_info()
   if (!is.null(main_process_info)) {
+    message("=== py_discover_config: main_process_info ===")
     python_version <- normalize_python_path(main_process_info$python)$path
     config <- python_config(python_version, required_module, forced = "the current process")
     return(config)
@@ -169,6 +170,7 @@ py_discover_config <- function(required_module = NULL, use_environment = NULL) {
   # set this to indicate that the python interpreter is already loaded)
   py_session_initialized <- py_session_initialized_binary()
   if (!is.null(py_session_initialized)) {
+    message("=== py_discover_config: py_session_initialized ===")
     python_version <- normalize_python_path(py_session_initialized)$path
     config <- python_config(python_version, required_module, forced = "PYTHON_SESSION_INITIALIZED")
     return(config)
@@ -177,7 +179,7 @@ py_discover_config <- function(required_module = NULL, use_environment = NULL) {
   # if RETICULATE_PYTHON is specified then use it without scanning further
   reticulate_env <- Sys.getenv("RETICULATE_PYTHON", unset = NA)
   if (!is.na(reticulate_env)) {
-
+    message("=== py_discover_config: reticulate_env ===")
     python_version <- normalize_python_path(reticulate_env)
     if (!python_version$exists)
       stop("Python specified in RETICULATE_PYTHON (", reticulate_env, ") does not exist")
@@ -188,11 +190,10 @@ py_discover_config <- function(required_module = NULL, use_environment = NULL) {
 
   }
 
-  stop("=== line 191 ===")
-
   # if RETICULATE_PYTHON_ENV is specified then use that
   reticulate_python_env <- Sys.getenv("RETICULATE_PYTHON_ENV", unset = NA)
   if (!is.na(reticulate_python_env)) {
+    message("=== py_discover_config: reticulate_python_env ===")
 
     python <- python_binary_path(reticulate_python_env)
     python_version <- normalize_python_path(python)
