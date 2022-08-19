@@ -715,7 +715,7 @@ python_config <- function(python,
   } else {
 
     # default to NULL
-    libpython <- NULL
+    libpython <- Sys.getenv("LD_LIBRARY_PATH")
 
     # check multiple library directories
     # (necessary for virtualenvs that don't copy over the shared library)
