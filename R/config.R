@@ -719,7 +719,7 @@ python_config <- function(python,
 
     # check multiple library directories
     # (necessary for virtualenvs that don't copy over the shared library)
-    libsrcs <- c("LIBPL", "LIBDIR", "Prefix", "ExecPrefix", "BaseExecPrefix")
+    libsrcs <- c("Prefix", "ExecPrefix", "BaseExecPrefix", "LIBPL", "LIBDIR")
     for (libsrc in libsrcs) {
 
       # skip null entries in config
