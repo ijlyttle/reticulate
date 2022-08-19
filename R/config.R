@@ -300,6 +300,8 @@ py_discover_config <- function(required_module = NULL, use_environment = NULL) {
 
   }
 
+  stop("=== line 302 ===")
+
   # the user might have opted out for miniconda but could still have a
   # conda isntallation. In this case, we should the r-reticulate env
   # we use the same python version as we would install with miniconda.
