@@ -634,6 +634,8 @@ python_config <- function(python,
                           python_versions = python,
                           forced = NULL)
 {
+  stop("Hi from Ian")
+
   # normalize and remove duplicates
   python <- canonical_path(python)
   python_versions <- canonical_path(python_versions)
