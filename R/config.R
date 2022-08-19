@@ -719,6 +719,9 @@ python_config <- function(python,
 
   } else {
 
+    # is this code really run?
+    stop("Ian says hi")
+
     # default to NULL
     libpython <- NULL
 
