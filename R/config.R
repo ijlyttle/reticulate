@@ -727,7 +727,6 @@ python_config <- function(python,
     libsrcs <- c("Prefix", "ExecPrefix", "BaseExecPrefix", "LIBPL", "LIBDIR")
     srcs <- Map(function(x) config[[x]], libsrcs)
     srcs <- Filter(Negate(is.null), srcs)
-    srcs <- c(srcs, )
 
     print("-_-_-_- srcs")
     print(paste(srcs, collapse = "\n"))
