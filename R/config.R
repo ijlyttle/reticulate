@@ -728,6 +728,10 @@ python_config <- function(python,
     srcs <- Map(function(x) config[[x]], libsrcs)
     srcs <- Filter(Negate(is.null), srcs)
 
+    print("-_-_-_- config")
+    print(config)
+    print("-_-_-_-")
+
     print("-_-_-_- srcs")
     print(srcs)
     print("-_-_-_-")
