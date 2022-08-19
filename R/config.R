@@ -682,6 +682,9 @@ python_config <- function(python,
   anaconda <- grepl("anaconda|continuum", version_string, ignore.case = TRUE)
   architecture <- config$Architecture
 
+  # is this code really run?
+  stop("Ian says hi")
+
   # determine the location of libpython
   # see also: https://github.com/JuliaPy/PyCall.jl/blob/master/deps/build.jl
   main_process_info <- main_process_python_info()
@@ -718,9 +721,6 @@ python_config <- function(python,
     }
 
   } else {
-
-    # is this code really run?
-    stop("Ian says hi")
 
     # default to NULL
     libpython <- NULL
