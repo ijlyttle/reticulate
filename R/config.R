@@ -715,17 +715,16 @@ python_config <- function(python,
   } else {
 
     # default to NULL
-    libpython <- Sys.getenv("LD_LIBRARY_PATH")
+    libpython <- NULL
 
     # check multiple library directories
     # (necessary for virtualenvs that don't copy over the shared library)
     libsrcs <- c("Prefix", "ExecPrefix", "BaseExecPrefix", "LIBPL", "LIBDIR")
-    for (libsrc in libsrcs) {
+    srcs <- Map(function(x) config[[x]], libsrcs)
+    srcs <- Filter(Negate(is.null), srcs)
+    srcs <- c(srcs, Sys.getenv("LD_LIBRARY_PATH"))
 
-      # skip null entries in config
-      src <- config[[libsrc]]
-      if (is.null(src))
-        next
+    for (src in srcs) {
 
       # get appropriate libpython extension for platform
       ext <- switch(
