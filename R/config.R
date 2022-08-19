@@ -729,7 +729,7 @@ python_config <- function(python,
     srcs <- Filter(Negate(is.null), srcs)
 
     print("-_-_-_- srcs")
-    print(paste(srcs, collapse = "\n"))
+    print(srcs)
     print("-_-_-_-")
 
     for (src in srcs) {
