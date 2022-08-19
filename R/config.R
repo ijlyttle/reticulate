@@ -724,6 +724,10 @@ python_config <- function(python,
     srcs <- Filter(Negate(is.null), srcs)
     srcs <- c(srcs, Sys.getenv("LD_LIBRARY_PATH"))
 
+    message("-_-_-_-")
+    message(paste(srcs, collapse = "\n"))
+    message("-_-_-_-")
+
     for (src in srcs) {
 
       # get appropriate libpython extension for platform
