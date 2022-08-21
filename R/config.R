@@ -393,6 +393,11 @@ py_discover_config <- function(required_module = NULL, use_environment = NULL) {
       print(required_module)
       print(python_versions)
       message("== /args ==")
+      message("== libpath ==")
+      libpath <- file.path(dirname(dirname(python)), "lib")
+      print(libpath)
+      print(file.exists(libpath))
+      message("== /libpath ==")
       return(config)
     }
 
