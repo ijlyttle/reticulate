@@ -702,6 +702,9 @@ python_config <- function(python,
 
   # execute config script
   config <- python_config_impl(python)
+  message("=== python_config : config ===")
+  print(config)
+  message("=== /python_config : config ===")
 
   # read output as dcf
   config_connection <- textConnection(config)
