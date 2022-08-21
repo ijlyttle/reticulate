@@ -689,6 +689,9 @@ python_config <- function(python,
           Sys.setenv(LD_LIBRARY_PATH = oldlibpath)
       }, add = TRUE)
     }
+    message("=== python_config : libpath ===")
+    print(libpath)
+    message("=== /python_config : libpath ===")
   }
 
   # collect configuration information
