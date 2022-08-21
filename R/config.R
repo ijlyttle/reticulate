@@ -386,15 +386,21 @@ py_discover_config <- function(required_module = NULL, use_environment = NULL) {
     if (has_compatible_arch && has_preferred_numpy)
       valid_python_versions <- c(valid_python_versions, python_version)
     has_required_module <- is.null(config$required_module) || !is.null(config$required_module_path)
-    if (has_python_gte_27 && has_compatible_arch && has_preferred_numpy && has_required_module)
+    if (has_python_gte_27 && has_compatible_arch && has_preferred_numpy && has_required_module) {
+      message("=== py_discover_config: preferred version ===")
       return(config)
+    }
+
   }
 
   # no preferred found, return first with valid config if we have it or NULL
-  if (length(valid_python_versions) > 0)
+  if (length(valid_python_versions) > 0) {
+    message("=== py_discover_config: length(valid_python_versions) > 0 ===")
     return(python_config(valid_python_versions[[1]], required_module, python_versions))
-  else if (length(python_versions) > 0)
+  } else if (length(python_versions) > 0) {
+    message("=== py_discover_config: length(python_versions) > 0 ===")
     return(python_config(python_versions[[1]], required_module, python_versions))
+  }
   else
     return(NULL)
 }
