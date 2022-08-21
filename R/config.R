@@ -388,6 +388,7 @@ py_discover_config <- function(required_module = NULL, use_environment = NULL) {
     has_required_module <- is.null(config$required_module) || !is.null(config$required_module_path)
     if (has_python_gte_27 && has_compatible_arch && has_preferred_numpy && has_required_module) {
       message("=== py_discover_config: preferred version ===")
+      print(config)
       return(config)
     }
 
