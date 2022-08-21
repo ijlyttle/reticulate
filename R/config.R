@@ -396,7 +396,9 @@ py_discover_config <- function(required_module = NULL, use_environment = NULL) {
       message("== libpath ==")
       libpath <- file.path(dirname(dirname(python)), "lib")
       print(libpath)
-      print(file.exists(libpath))
+      if (file.exists(libpath)) {
+        print(list.files(libpath))
+      }
       message("== /libpath ==")
       return(config)
     }
