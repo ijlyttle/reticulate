@@ -217,13 +217,17 @@ py_discover_config <- function(required_module = NULL, use_environment = NULL) {
   # if we're working within a project that contains a Pipfile, then
   # use the copy of Python associated with that pipenv
   config <- tryCatch(pipenv_config(required_module), error = identity)
-  if (!inherits(config, "error") && !is.null(config))
+  if (!inherits(config, "error") && !is.null(config)) {
+    message("=== py_discover_config: pipenv_config ===")
     return(config)
+  }
+
 
   # next look for a required python version
   # (e.g. use_python("/usr/bin/python", required = TRUE))
   required_version <- .globals$required_python_version
   if (!is.null(required_version)) {
+    message("=== py_discover_config: required_version ===")
     python_version <- normalize_python_path(required_version)$path
     config <- python_config(python_version, required_module, forced = "use_python function")
     return(config)
@@ -232,6 +236,7 @@ py_discover_config <- function(required_module = NULL, use_environment = NULL) {
   # if RETICULATE_PYTHON_FALLBACK is specified then use it
   reticulate_env <- Sys.getenv("RETICULATE_PYTHON_FALLBACK", unset = NA)
   if (!is.na(reticulate_env)) {
+    message("=== py_discover_config: reticulate_env ===")
     python_version <- normalize_python_path(reticulate_env)
     if (!python_version$exists)
       stop("Python specified in RETICULATE_PYTHON_FALLBACK (", reticulate_env, ") does not exist")
@@ -275,7 +280,6 @@ py_discover_config <- function(required_module = NULL, use_environment = NULL) {
   # environment, then we'll prompt for installation of miniconda
   miniconda <- miniconda_conda()
   if (!file.exists(miniconda)) {
-
     can_install_miniconda <-
       is_interactive() &&
       length(python_versions) == 0 &&
@@ -294,10 +298,12 @@ py_discover_config <- function(required_module = NULL, use_environment = NULL) {
     # create the conda environment if necessary
     envpath <- miniconda_python_envpath()
     if (!file.exists(envpath)) {
+
       python <- miniconda_python_package()
       conda_create(envpath, packages = c(python, "numpy"), conda = miniconda)
     }
 
+    message("=== py_discover_config: miniconda ===")
     # bind to it
     miniconda_python <- conda_python(envpath, conda = miniconda)
     config <- python_config(miniconda_python, NULL, miniconda_python)
